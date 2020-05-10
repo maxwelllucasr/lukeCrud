@@ -44,7 +44,7 @@ if (isset($_POST['name'])){
     if($link){
         // crudlog("here",true);
 
-
+        //form table
         $res = $link->prepare('INSERT INTO forms (name, owner, date_created) VALUES (?, ?, ?)');
         if ($res) crudlog(var_export($res,true),true);
 
@@ -52,13 +52,24 @@ if (isset($_POST['name'])){
         $now = date("Y-m-d H:i:s");
         $owner = 1; //hardcoded for now
         $name = $_POST['name'];
-
-        
         // crudlog($name.$owner.$now,true);
-
-
         $res->execute();
 
+        //get autonumber'd id for this 
+        $res = $link->prepare("SELECT id FROM forms WHERE name = ? AND owner = ?");
+        $res->bind_param('si',$name,$owner);
+        $res->execute();
+        $result = $res->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        //fields table header
+        $res = $link->prepare('INSERT INTO fields (form_id, type, name) VALUES (?, ?, ?)');
+        $res->bind_param('iss',$data[0]['id'], $type, $name);
+        $type = "heading";
+        $name = "heading"; 
+
+        $res->execute();
+        $res->close();
 
         // $res->close();
         $link->close();

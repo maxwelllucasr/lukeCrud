@@ -22,7 +22,7 @@ crudlog(var_export($data,true),false);
 
     <tr>
         <td><?=$row['id']?></td>
-        <td><?=$row['name']?></td>
+        <td><a href="form.php/?form=<?=$row['id']?>"><?=$row['name']?></a></td>
     </tr>
 
 <?php } ?>

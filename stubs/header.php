@@ -15,6 +15,6 @@ Luke Crud
 </h1>
 
 <nav>
-    <a href="admin.php">Admin</a>
-    <a href="index.php">Home</a>
+    <a href="/lukeCrud/admin.php">Admin</a>
+    <a href="/lukeCrud/index.php">Home</a>
 </nav>
