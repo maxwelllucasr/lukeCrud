@@ -1,7 +1,8 @@
 <?php
 require 'functions.php';
+require 'mysqlCredentials.php';
 
-if (isset($_POST['name'])) crudlog($_POST['name']);
+// if (isset($_POST['name'])) crudlog($_POST['name']);
 
 
 
@@ -38,5 +39,31 @@ if (isset($_POST['name'])) crudlog($_POST['name']);
 //Data ID - Primary
 //Field JSON - variable length of columns in this field means that we need a column for JSON
 
+if (isset($_POST['name'])){
+    $link = mysqli_connect($hn,$us,$ps,$db);
+    if($link){
+        // crudlog("here",true);
+
+
+        $res = $link->prepare('INSERT INTO forms (name, owner, date_created) VALUES (?, ?, ?)');
+        if ($res) crudlog(var_export($res,true),true);
+
+        $res->bind_param('sis',$name,$owner,$now);
+        $now = date("Y-m-d H:i:s");
+        $owner = 1; //hardcoded for now
+        $name = $_POST['name'];
+
+        
+        // crudlog($name.$owner.$now,true);
+
+
+        $res->execute();
+
+
+        // $res->close();
+        $link->close();
+    }
+
+}
 
 ?>

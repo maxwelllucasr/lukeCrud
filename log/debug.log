@@ -1,23 +1,73 @@
 
-test
-test
-hello
-hello
-testing
-hello
-testing
-hello
-testing
-hello
-testing
-hello
-testing
-hello
-testing
-hello123
-hello123
-hello123
-hello123
-hello123
-hello123
-hello123&gt;
+mysqli_stmt::__set_state(array(
+   'affected_rows' => NULL,
+   'insert_id' => NULL,
+   'num_rows' => NULL,
+   'param_count' => NULL,
+   'field_count' => NULL,
+   'errno' => NULL,
+   'error' => NULL,
+   'error_list' => NULL,
+   'sqlstate' => NULL,
+   'id' => NULL,
+))
+mysqli_stmt::__set_state(array(
+   'affected_rows' => NULL,
+   'insert_id' => NULL,
+   'num_rows' => NULL,
+   'param_count' => NULL,
+   'field_count' => NULL,
+   'errno' => NULL,
+   'error' => NULL,
+   'error_list' => NULL,
+   'sqlstate' => NULL,
+   'id' => NULL,
+))
+mysqli_stmt::__set_state(array(
+   'affected_rows' => NULL,
+   'insert_id' => NULL,
+   'num_rows' => NULL,
+   'param_count' => NULL,
+   'field_count' => NULL,
+   'errno' => NULL,
+   'error' => NULL,
+   'error_list' => NULL,
+   'sqlstate' => NULL,
+   'id' => NULL,
+))
+array (
+  0 => 
+  array (
+    'id' => 38,
+    'name' => 'abc',
+    'owner' => 1,
+    'date_created' => '2020-05-10 06:19:41',
+    'updated_at' => '2020-05-10 02:19:41',
+  ),
+  1 => 
+  array (
+    'id' => 39,
+    'name' => 'abcde',
+    'owner' => 1,
+    'date_created' => '2020-05-10 06:21:34',
+    'updated_at' => '2020-05-10 02:21:34',
+  ),
+)
+array (
+  0 => 
+  array (
+    'id' => 38,
+    'name' => 'abc',
+    'owner' => 1,
+    'date_created' => '2020-05-10 06:19:41',
+    'updated_at' => '2020-05-10 02:19:41',
+  ),
+  1 => 
+  array (
+    'id' => 39,
+    'name' => 'abcde',
+    'owner' => 1,
+    'date_created' => '2020-05-10 06:21:34',
+    'updated_at' => '2020-05-10 02:21:34',
+  ),
+)

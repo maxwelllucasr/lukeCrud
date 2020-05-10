@@ -11,6 +11,7 @@ require 'stubs/header.php';
     <input type="text" class="submit-form-field">
     <p class="ajax-submit" href="#">Submit</p>
 
+    <?php require 'sections/usersForms.php'; ?>
 
     <script>
          $(document).ready(function(){
@@ -28,7 +29,7 @@ require 'stubs/header.php';
                     $.post( "stubs/submitNewForm.php", { name: formName} );
                 }
 
-                $('.message').html("<h1>test</h1>");
+                // $('.message').html("<h1>test</h1>");
 
             });
          })
