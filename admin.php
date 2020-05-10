@@ -1,6 +1,7 @@
 <?php
 require 'stubs/header.php';
 
+if (($_SESSION['userid']) && ($_SESSION['isadmin'])) {
 ?>
 
 <h2>Admin</h2>
@@ -12,5 +13,8 @@ require 'stubs/header.php';
 
    
 <?php
+}
+else echo "Access denied";
+
 require 'stubs/footer.php';
 ?>

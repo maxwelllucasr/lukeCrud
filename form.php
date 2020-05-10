@@ -4,6 +4,12 @@ require 'stubs/header.php';
 
 if (isset($_GET['form'])){
     $link = mysqli_connect($hn,$us,$ps,$db);
+
+    if (isset($_POST['deleteField'])){
+        $res = $link->prepare('DELETE FROM fields WHERE id = ?');
+        $res->bind_param('i',$_POST['deleteField']);
+        $res->execute();
+    }
     //Sql injection opportunity
     $res = $link->query("SELECT * FROM fields WHERE form_id =".$_GET['form']);
     ?>
@@ -13,6 +19,7 @@ if (isset($_GET['form'])){
                 <th>ID</th>
                 <th>Type</th>
                 <th>Name</th>
+                <th>Delete</th>
             </tr>  
         <?php foreach($res as $single){ ?>
         
@@ -20,6 +27,7 @@ if (isset($_GET['form'])){
                 <td style="border:1px solid gray; padding: 0.5rem 1rem"><?=$single['id']?></td>
                 <td style="border:1px solid gray; padding: 0.5rem 1rem"><?=$single['type']?></td>
                 <td style="border:1px solid gray; padding: 0.5rem 1rem"><?=$single['name']?></td>
+                <td style="border:1px solid gray; padding: 0.5rem 1rem"><form action="../form.php/?form=<?=$_GET['form']?>" method="post"><input type="hidden" name="deleteField" value="<?=$single['id']?>"><input type="submit" style="color:red" value="Delete Row"></form></td>
             </tr>
 
         <?php 
