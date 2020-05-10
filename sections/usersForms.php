@@ -8,7 +8,7 @@ $result = $res->get_result();
 $data = $result->fetch_all(MYSQLI_ASSOC);
 crudlog(var_export($data,true),false);
 ?>
-<section>
+<section style="border:1px solid black;">
 
 <h2>Your forms:</h2>
 
