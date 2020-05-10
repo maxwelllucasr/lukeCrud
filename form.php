@@ -36,6 +36,11 @@ if (isset($_GET['form'])){
     </table>
 
     <!-- ordering/filtering? -->
+    
+    <h2>Form Options</h2>
+    <label>Is Visible</label><input class="is_active_checkbox" value="1" type="checkbox"> <a href="#" class="is_active_submit">Submit</a>
+
+
 
     <h2>Add new field</h2>
     <label>Name</label>
@@ -51,15 +56,54 @@ if (isset($_GET['form'])){
     <span id="field-submit">
         <a href="#">Submit</a>
     </span>
+
+    <!-- json add as many as you want -->
+    <div class="dropdown-options" style="display:none">
+            <label>Dropdown options</label>
+            <br>
+            <a href="#" class="add-another-dropdown-option">Add another option</a>
+            <br>
+                <div class="dropdown-options-inner">
+                    <input class="dropdown-option" type="text" name="form_<?=$_GET['form']?>_option_1" /><br>
+                </div>
+            
+    </div>
+
+
     <script>
      $(document).ready(function(){
+        var dropdownCount = 1;
+
+        $('select[name="typeSelect"]').change(function(){
+            if ($(this).val() == "dropdown"){
+                $('.dropdown-options').css('display','block');
+            }
+            else{
+                $('.dropdown-options').css('display','none');
+            }
+        })
+        $('.add-another-dropdown-option').click(function(){
+            dropdownCount++;
+            $('.dropdown-options-inner').append('<input class="dropdown-option" type="text" name="form_<?=$_GET['form']?>_option_'+dropdownCount+'" /><br>')
+        })
         $('#field-submit a').click(function(){
             var nameVal = $('input[name="fieldName"]').val();
             var selectVal = $('select[name="typeSelect"]').val();
-            $.post( "../stubs/submitNewField.php", { name: nameVal, type: selectVal, formId : <?=$_GET['form']?>} );
-        });
-    });
 
+            var options = Array();
+            for (var i = 1; i < dropdownCount+1; i++){
+                option = $('.dropdown-option[name="form_<?=$_GET['form']?>_option_'+i+'"]').val();
+                options.push(option);
+            }
+            jsonOptions = JSON.stringify(options);
+            $.post( "../stubs/submitNewField.php", { name: nameVal, type: selectVal, formId : <?=$_GET['form']?>, options : jsonOptions} );
+        });
+        $('.is_active_submit').click(function(){
+            $.post("../stubs/formIsActive.php", { is_active:($('.is_active_checkbox').is(':checked')), form: <?=$_GET['form']?>} );
+            // if ($('.is_active_checkbox').val() == 1)
+        })
+    });
+     
     
     
     

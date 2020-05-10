@@ -22,6 +22,7 @@
 
                     if (($dbuser == $user) && ($dbpass == $pass)){
                         $_SESSION['userid'] = $dbid;
+                        $_SESSION['username'] = $user;
                         echo "Logged in!";
                         if ($dbrole == "Admin"){
                             $_SESSION['isadmin'] = true;
