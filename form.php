@@ -62,6 +62,8 @@ if (isset($_GET['form'])){
             <label>Dropdown options</label>
             <br>
             <a href="#" class="add-another-dropdown-option">Add another option</a>
+            <a href="#" class="clear-fields-option">Clear fields</a>
+
             <br>
                 <div class="dropdown-options-inner">
                     <input class="dropdown-option" type="text" name="form_<?=$_GET['form']?>_option_1" /><br>
@@ -86,6 +88,10 @@ if (isset($_GET['form'])){
             dropdownCount++;
             $('.dropdown-options-inner').append('<input class="dropdown-option" type="text" name="form_<?=$_GET['form']?>_option_'+dropdownCount+'" /><br>')
         })
+        $('.clear-fields-option').click(function(){
+            dropdownCount = 0;
+            $('.dropdown-options-inner').html("");
+        })
         $('#field-submit a').click(function(){
             var nameVal = $('input[name="fieldName"]').val();
             var selectVal = $('select[name="typeSelect"]').val();
@@ -99,7 +105,8 @@ if (isset($_GET['form'])){
             $.post( "../stubs/submitNewField.php", { name: nameVal, type: selectVal, formId : <?=$_GET['form']?>, options : jsonOptions} );
         });
         $('.is_active_submit').click(function(){
-            $.post("../stubs/formIsActive.php", { is_active:($('.is_active_checkbox').is(':checked')), form: <?=$_GET['form']?>} );
+            var checkbox = $('.is_active_checkbox').is(':checked');
+            $.post("../stubs/formIsActive.php", { is_active: checkbox, form: <?=$_GET['form']?>} );
             // if ($('.is_active_checkbox').val() == 1)
         })
     });

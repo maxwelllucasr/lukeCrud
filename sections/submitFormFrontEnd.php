@@ -2,7 +2,7 @@
 
     <input type="text" class="submit-form-field">
     <span class="ajax-submit">
-    <a style="display:block;padding:.5rem 1rem;background-color:red;color:white;border-radius:5px;width:max-content; margin:1rem;" href="#">Submit</a>
+    <a style="display:inline-block;padding:.5rem 1rem;background-color:red;color:white;border-radius:5px;width:auto; margin:1rem;" href="#">Submit</a>
     </span>
 
 </section>

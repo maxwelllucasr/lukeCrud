@@ -15,7 +15,7 @@ require 'mysqlCredentials.php';
 Luke Crud
 </h1>
 
-<?php if (!isset($_SESSION['username'])) { ?><form action="login.php" method="post"><input type="submit" name="logout" value="Logout"></form> <?php } ?>
+<?php if (isset($_SESSION['username'])) { ?><form action="login.php" method="post"><input type="submit" name="logout" value="Logout"></form> <?php } ?>
 
 <?php 
 
