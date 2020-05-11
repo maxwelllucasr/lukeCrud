@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 10, 2020 at 05:05 AM
+-- Generation Time: May 11, 2020 at 12:01 AM
 -- Server version: 5.6.37
 -- PHP Version: 7.1.8
 
@@ -43,8 +43,18 @@ CREATE TABLE IF NOT EXISTS `fields` (
   `id` int(11) NOT NULL,
   `form_id` int(254) NOT NULL,
   `type` text NOT NULL,
-  `name` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `name` text NOT NULL,
+  `options` longtext
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fields`
+--
+
+INSERT INTO `fields` (`id`, `form_id`, `type`, `name`, `options`) VALUES
+(34, 55, 'text', 'Heading', '[""]'),
+(36, 54, 'text', 'First Name', '[""]'),
+(37, 54, 'text', 'Last Name', '[""]');
 
 -- --------------------------------------------------------
 
@@ -57,8 +67,17 @@ CREATE TABLE IF NOT EXISTS `forms` (
   `name` text NOT NULL COMMENT 'validate that its unique to its user in the code',
   `owner` int(11) NOT NULL,
   `date_created` datetime NOT NULL,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `forms`
+--
+
+INSERT INTO `forms` (`id`, `name`, `owner`, `date_created`, `updated_at`, `is_active`) VALUES
+(54, 'Contact Us', 1, '2020-05-10 16:53:49', '2020-05-10 12:53:49', 1),
+(55, 'Comment', 1, '2020-05-10 23:38:11', '2020-05-10 19:38:11', 1);
 
 -- --------------------------------------------------------
 
@@ -68,8 +87,17 @@ CREATE TABLE IF NOT EXISTS `forms` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `name` text NOT NULL,
+  `pass` text NOT NULL,
+  `role` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `pass`, `role`) VALUES
+(1, 'luke', 'pass', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -95,7 +123,7 @@ ALTER TABLE `fields`
 --
 ALTER TABLE `forms`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `owner` (`owner`);
+  ADD KEY `owner` (`owner`) USING BTREE;
 
 --
 -- Indexes for table `users`
@@ -117,17 +145,17 @@ ALTER TABLE `data`
 -- AUTO_INCREMENT for table `fields`
 --
 ALTER TABLE `fields`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --
